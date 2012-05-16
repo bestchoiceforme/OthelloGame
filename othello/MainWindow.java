@@ -6,9 +6,9 @@ import java.awt.event.*;
 import java.util.Vector;
 import players.*;
 
-public final class OthManager extends MouseAdapter{  
-    private static OthManager singleton = new OthManager();
-  public  static OthManager Singleton()
+public final class MainWindow extends MouseAdapter{  
+    private static MainWindow singleton = new MainWindow();
+  public  static MainWindow Singleton()
   {
     return singleton;
   }
@@ -87,9 +87,9 @@ public final class OthManager extends MouseAdapter{
   }
 
   private Timer timer;
-  private OthManager()  {    oth_engine = new OthEngine();
+  private MainWindow()  {    oth_engine = new OthEngine();
     oth_board = new OthBoard(oth_engine.GetBoardStatus());
-    timer = new OthManager.Timer();
+    timer = new MainWindow.Timer();
     timer.DisableTimer();
   }
 
@@ -277,19 +277,21 @@ public final class OthManager extends MouseAdapter{
 
    
   public static void main(String[] argv) {
+    GameMain window11 = new GameMain();
+   // GameMain.
     OthPlayer black_player = new DumbPlayer(OthPlayer.BLACK);
     OthPlayer white_player = new DumbPlayer(OthPlayer.WHITE);
     argv = new String[1];
-    argv[0]="-allmachine";
+    argv[0]="-humansecond";
     if (argv.length==1 && argv[0].equals("-allmachine")) {
-      OthManager.Singleton().PlayOthello(black_player, white_player);
+      MainWindow.Singleton().PlayOthello(black_player, white_player);
     } else 
       if (argv.length==1 && argv[0].equals("-humansecond")) {
-      OthManager.Singleton().PlayOthelloWithHuman(OthPlayer.BLACK,
+      MainWindow.Singleton().PlayOthelloWithHuman(OthPlayer.BLACK,
                                                   black_player);
     } else 
      {
-      OthManager.Singleton().PlayOthelloWithHuman(OthPlayer.WHITE,
+      MainWindow.Singleton().PlayOthelloWithHuman(OthPlayer.WHITE,
                                                   white_player);
     }
   }

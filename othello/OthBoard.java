@@ -7,7 +7,7 @@ import javax.swing.*;
 class OthBoard{  /**
     * specify the number of chess board rows and columns.
     */
-  public static final int SIZE=8;
+  public static final int SIZE=10;
   private static final int CELLSIZE=40;
   private JFrame oth_frame;
   private JLabel status_msg;
@@ -18,7 +18,10 @@ class OthBoard{  /**
   private int old_board_status[][];
 
   private void CreateOthBoard(int board_status[][])  {    this.board_status = old_board_status = board_status;
-    oth_frame = new JFrame("Othello in Java");
+    GameMain mainwindow = new GameMain();
+    oth_frame = new JFrame();
+   //
+    //oth_frame.
     oth_frame.setBackground(Color.lightGray);
     oth_frame.getContentPane().setLayout(new GridBagLayout());
     oth_frame.setLocation(300, 200);
@@ -85,11 +88,13 @@ class OthBoard{  /**
   }
 
 
-  private void AddComponent (JFrame jframe, Component comp, int row, int col)  {    location.gridx = col;  location.gridy = row;
+  private void AddComponent (JFrame jframe, Component comp, int row, int col)  {  
+      location.gridx = col;  location.gridy = row;
     jframe.getContentPane().add(comp, location);
   }
 
-  private void DrawRect (Component comp, Graphics g)  {    Image shadow;
+  private void DrawRect (Component comp, Graphics g)  {    
+      Image shadow;
     Graphics shadow_g;
     Rectangle box;
     box = comp.getBounds();
@@ -100,7 +105,8 @@ class OthBoard{  /**
     g.drawImage(shadow, 0, 0, comp);
   }
 
-  private void DrawRectCircle (Component comp, Graphics g, Color color)  {    Image shadow;
+  private void DrawRectCircle (Component comp, Graphics g, Color color)  {   
+    Image shadow;
     Graphics shadow_g;
     Rectangle box;
     box = comp.getBounds();
@@ -125,9 +131,9 @@ class OthBoard{  /**
       CreateOthBoard(board_status);
   }
 
-  void DisplayBoard ()  {    String game_msg = OthManager.GetGameStatus();
+  void DisplayBoard ()  {    String game_msg = MainWindow.GetGameStatus();
     SetStatusMessage(game_msg);
-    board_status = OthManager.GetBoardStatus();
+    board_status = MainWindow.GetBoardStatus();
     for (int i=0; i<OthBoard.SIZE; i++)
     {
       for (int j=0; j<OthBoard.SIZE; j++)
@@ -155,10 +161,11 @@ class OthBoard{  /**
     oth_cells[OthBoard.SIZE/2][OthBoard.SIZE/2].setEnabled(false);
     oth_cells[OthBoard.SIZE/2][OthBoard.SIZE/2-1].setEnabled(false);
     oth_cells[OthBoard.SIZE/2-1][OthBoard.SIZE/2].setEnabled(false);
-    SetStatusMessage(OthManager.GetGameStatus());
+    SetStatusMessage(MainWindow.GetGameStatus());
   }
 
-  void DisableMove (OthMove move)  {    oth_cells[move.x][move.y].setEnabled(false);
+  void DisableMove (OthMove move)  {   
+      oth_cells[move.x][move.y].setEnabled(false);
   }
 
   void DisableBoard ()  {    int i, j;

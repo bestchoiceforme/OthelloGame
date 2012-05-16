@@ -12,7 +12,7 @@ public class DumbPlayer extends OthPlayer
   public DumbPlayer(int player_color )  {      _color = player_color;
   }
 
-  public OthMove NextMove(int[][] board_status)  {    Vector moves = OthManager.GetLegalMoves (_color);
+  public OthMove NextMove(int[][] board_status)  {    Vector moves = MainWindow.GetLegalMoves (_color);
     if (moves.size() == 0)
     {
       throw new RuntimeException("No move!");
@@ -32,11 +32,11 @@ public class DumbPlayer extends OthPlayer
     OthPlayer white_player = new DumbPlayer(WHITE);
     if (argv.length==1 && argv[0].equals("-allmachine"))
     {
-      OthManager.Singleton().PlayOthello(black_player, white_player);
+      MainWindow.Singleton().PlayOthello(black_player, white_player);
     }
     else if (argv.length==1 && argv[0].equals("-humansecond"))
     {
-      OthManager.Singleton().PlayOthelloWithHuman(OthPlayer.BLACK, black_player);
+      MainWindow.Singleton().PlayOthelloWithHuman(OthPlayer.BLACK, black_player);
     }
     else if (argv.length==1 && argv[0].equals("-help"))
     {
@@ -44,7 +44,7 @@ public class DumbPlayer extends OthPlayer
     }
     else
     {
-      OthManager.Singleton().PlayOthelloWithHuman(OthPlayer.WHITE, white_player);
+      MainWindow.Singleton().PlayOthelloWithHuman(OthPlayer.WHITE, white_player);
     }*/
   }
 }
